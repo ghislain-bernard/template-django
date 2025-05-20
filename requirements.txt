@@ -1,0 +1,8 @@
+django
+gunicorn
+
+mypy
+pylint
+yapf
+
+django-stubs
