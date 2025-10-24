@@ -1,0 +1,28 @@
+kind: pipeline
+type: docker
+
+steps:
+  - name: test
+    image: python:3.14.0-alpine
+    commands:
+      - pwd
+      - apk --no-cache add bash coreutils gcc make musl-dev
+      - pip --version
+      - pip --disable-pip-version-check install --requirement=requirements.txt --root-user-action=ignore
+      - adduser --disabled-password --uid=1000 user
+      - '[[ $CI_REPO_REMOTE ]] && chown --recursive user: .'
+      - su user -c './manage.py check'
+      - su user -c './manage.py collectstatic'
+      - su user -c 'yapf --version'
+      - su user -c 'yapf --diff manage.py'
+      - su user -c 'yapf --diff project/asgi.py project/settings.py project/urls.py project/wsgi.py'
+      - su user -c 'yapf --diff portal/apps.py portal/views.py'
+      - su user -c 'pylint --version'
+      - su user -c 'pylint --verbose manage.py'
+      - su user -c 'pylint --verbose project/asgi.py project/settings.py project/urls.py project/wsgi.py'
+      - su user -c 'pylint --verbose portal/apps.py portal/views.py'
+      - su user -c 'mypy --version'
+      - su user -c 'mypy manage.py'
+      - su user -c 'mypy project/asgi.py project/settings.py project/urls.py project/wsgi.py'
+      - su user -c 'mypy portal/apps.py portal/views.py'
+      - su user -c 'make clean'
