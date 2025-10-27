@@ -4,13 +4,42 @@
 
 ALLOWED_HOSTS = ['*']
 
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'django.sqlite3',
+  }
+}
+
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#installed-apps
 
-INSTALLED_APPS = ['django.contrib.staticfiles', 'portal.apps.PortalConfig']
+INSTALLED_APPS = [
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+  'portal.apps.PortalConfig',
+]
+
+# https://docs.djangoproject.com/en/5.2/ref/settings/#middleware
+
+MIDDLEWARE = [
+  'django.middleware.security.SecurityMiddleware',
+  'django.contrib.sessions.middleware.SessionMiddleware',
+  'django.middleware.common.CommonMiddleware',
+  'django.middleware.csrf.CsrfViewMiddleware',
+  'django.contrib.auth.middleware.AuthenticationMiddleware',
+  'django.contrib.messages.middleware.MessageMiddleware',
+  'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#root-urlconf
 
@@ -26,12 +55,17 @@ STATIC_URL = 'static/'
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#templates
 
-TEMPLATES = [
-  {
-    "APP_DIRS": True,
-    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-  },
-]
+TEMPLATES = [{
+  'APP_DIRS': True,
+  'BACKEND': 'django.template.backends.django.DjangoTemplates',
+  'OPTIONS': {
+    'context_processors': [
+      'django.template.context_processors.request',
+      'django.contrib.auth.context_processors.auth',
+      'django.contrib.messages.context_processors.messages',
+    ]
+  }
+}]
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#secret-key
 
