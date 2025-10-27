@@ -12,8 +12,11 @@ project/settings.py
 project/urls.py
 project/wsgi.py
 portal/__init__.py
+portal/admin.py
 portal/apps.py
+portal/models.py
 portal/views.py
+portal/migrations/__init__.py
 portal/templates/index.html
 portal/static/favicon.ico
 portal/static/style.css
