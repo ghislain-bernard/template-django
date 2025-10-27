@@ -2,3 +2,7 @@
 __pycache__/
 
 /dist/
+
+/*.sqlite3
+/*.sqlite3-journal
+/**/migrations/[0-9][0-9][0-9][0-9]_*.py
