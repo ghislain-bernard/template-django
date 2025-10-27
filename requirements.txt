@@ -1,6 +1,7 @@
 Django
 
 gunicorn
+ipython
 uvicorn
 
 mypy
