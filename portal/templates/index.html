@@ -18,6 +18,10 @@
       <a href="mailto:ghislain.bernard@gmail.com">
         <h3>ghislain.bernard@gmail.com</h3>
       </a>
+      <hr>{% if elements %} {% for element in elements %}
+      <h3>{{ element.name }}</h3>{% endfor %}{% else %}
+      <h3>EMPTY</h3>{% endif %}
+      <hr>
     </main>
   </body>
 </html>
