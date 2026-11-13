@@ -8,7 +8,7 @@ import django.db.models
 
 class Element(django.db.models.Model):
 
-  uuid: django.db.models.UUIDField = django.db.models.UUIDField(default=uuid.uuid4,
+  uuid: django.db.models.UUIDField = django.db.models.UUIDField(default=uuid.uuid7,
                                                                 editable=False,
                                                                 primary_key=True)
 
